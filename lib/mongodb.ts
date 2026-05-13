@@ -13,7 +13,8 @@ if (!cached) {
 
 export async function connectToDatabase() {
   // Accessing MONGODB_URI inside the function as requested (with fallback to MONGO_URI)
-  const MONGODB_URI = process.env.MONGODB_URI || process.env.MONGO_URI;
+  // lib/mongodb.ts ke upar check karein
+const MONGODB_URI = process.env.MONGODB_URI?.trim(); // .trim() zaroori hai
 
   console.log("🔍 [MongoDB] Connection attempt...");
   
@@ -50,4 +51,4 @@ export async function connectToDatabase() {
   }
 
   return cached.conn;
-}
+}
