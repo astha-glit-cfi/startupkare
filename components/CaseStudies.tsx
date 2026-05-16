@@ -1,119 +1,106 @@
 'use client';
 
-import { Trophy } from 'lucide-react';
+// FIX: Yahan ArrowRight add kar diya hai
+import { Trophy, ArrowUpRight, CheckCircle2, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
-interface CaseStudy {
-  title: string;
-  description: string;
-  metrics: { label: string; value: string }[];
-  icon: string;
-}
-
-const caseStudies: CaseStudy[] = [
+const caseStudies = [
   {
-    title: 'Tech Startup Success',
-    description: 'From idea to ₹5Cr Series A in 18 months using our platform',
+    slug: 'seed-round-closure',
+    title: 'Seed Round Closure',
+    client: 'FINTECH STARTUP',
+    tag: 'FUNDRAISING',
+    description: 'Closed ₹5Cr Series A in 8 months by refining financial models and investor matching.',
     metrics: [
-      { label: 'Revenue Growth', value: '300%' },
-      { label: 'Team Size', value: '25+' },
-      { label: 'Funding Raised', value: '₹5Cr' },
-    ],
-    icon: '🚀',
-  },
-  {
-    title: 'EdTech Revolution',
-    description: 'Scaled to 100K students using government schemes and investor network',
-    metrics: [
-      { label: 'Students', value: '100K+' },
-      { label: 'Cities', value: '15' },
-      { label: 'Impact', value: '₹10Cr' },
-    ],
-    icon: '📚',
-  },
-  {
-    title: 'FinTech Success Story',
-    description: 'Achieved profitability within 14 months with our ERP and compliance tools',
-    metrics: [
-      { label: 'Transactions', value: '₹50Cr+' },
-      { label: 'Users', value: '50K+' },
-      { label: 'MRR', value: '₹50L+' },
+      { label: 'Valuation Jump', value: '2.5x' },
+      { label: 'Investor Intros', value: '15+' },
+      { label: 'Capital Raised', value: '₹5Cr' },
     ],
     icon: '💰',
+  },
+  {
+    slug: 'dpiit-tax-exemption',
+    title: 'DPIIT & Tax Exemption',
+    client: 'D2C RETAIL BRAND',
+    tag: 'COMPLIANCE',
+    description: 'Secured 3-year income tax holiday and government procurement benefits.',
+    metrics: [
+      { label: 'Tax Saved', value: '₹12L/yr' },
+      { label: 'Status', value: 'Verified' },
+      { label: 'Grants', value: '₹5L' },
+    ],
+    icon: '🏛️',
+  },
+  {
+    slug: 'market-dominance',
+    title: 'Market Dominance',
+    client: 'SAAS PLATFORM',
+    tag: 'STRATEGY',
+    description: 'Achieved 300% revenue growth using our strategic go-to-market roadmap.',
+    metrics: [
+      { label: 'Users', value: '50K+' },
+      { label: 'Revenue', value: '300%↑' },
+      { label: 'MRR', value: '₹40L+' },
+    ],
+    icon: '📈',
   },
 ];
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="py-24 bg-gray-50 border-t border-gray-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="case-studies" className="relative py-32 !bg-white dark:!bg-[#02040A] transition-colors duration-500">
+      <div className="max-w-7xl mx-auto px-6">
+        
         <div className="text-center mb-20">
-          <div className="section-label mx-auto w-fit"><Trophy size={14} className="mr-2" /> Proven Results</div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B1D3A] mb-4 tracking-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-            Case <span className="text-[#FF6B35]">Studies</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-white/5 border border-indigo-100 dark:border-white/10 rounded-full text-[10px] font-bold text-indigo-700 dark:text-[#938BF1] uppercase tracking-[0.2em] mb-8">
+            <Trophy size={14} /> Proven Outcomes
+          </div>
+          <h2 className="text-4xl md:text-7xl font-serif font-bold !text-slate-950 dark:!text-white mb-6"> 
+            Our <span className="italic text-[#B48A32] dark:text-[#E4C37B]">Results</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">Detailed analysis of how we've helped Indian startups achieve market dominance.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto pt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {caseStudies.map((study, idx) => (
-            <div key={idx} className="case-study-container group">
-              <div className="mobile-card relative p-8 pt-12 bg-white border-[10px] border-[#0B1D3A] rounded-[3rem] shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-[#FF6B35] group-hover:shadow-orange-500/10 min-h-[520px] flex flex-col overflow-hidden">
-                
-                {/* Mobile Notch/Header */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-16 h-4 bg-gray-100 rounded-full flex items-center justify-center gap-1.5 px-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
-                  <div className="w-6 h-1 rounded-full bg-gray-300"></div>
-                </div>
-
-                <div className="w-16 h-16 bg-gray-50 border border-gray-100 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-transform duration-500 shadow-sm">
-                  {study.icon}
-                </div>
-                
-                <h3 className="text-xl font-bold text-[#0B1D3A] mb-3 tracking-tight group-hover:text-[#FF6B35]" style={{ fontFamily: 'var(--font-heading)' }}>
-                  {study.title}
-                </h3>
-                <p className="text-sm text-gray-500 mb-8 leading-relaxed">
-                  {study.description}
-                </p>
-
-                <div className="flex flex-col gap-4 mb-8 flex-grow">
-                  {study.metrics.map((metric, midx) => (
-                    <div key={midx} className="flex justify-between items-center pb-3 border-b border-gray-50 last:border-0 last:pb-0">
-                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{metric.label}</span>
-                      <span className="text-sm font-extrabold text-[#0B1D3A]">{metric.value}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <button className="w-full py-4 rounded-2xl font-bold text-xs uppercase tracking-widest border-2 border-gray-100 text-[#0B1D3A] group-hover:bg-[#FF6B35] group-hover:border-[#FF6B35] group-hover:text-white transition-all shadow-sm">
-                  Full Report
-                </button>
+            <div 
+              key={idx} 
+              className="group p-10 bg-slate-50 dark:bg-[#0B0F1A] border border-slate-200 dark:border-white/5 rounded-[40px] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-full"
+            >
+              <div className="flex justify-between items-start mb-8">
+                <div className="text-4xl">{study.icon}</div>
+                <span className="text-[10px] font-black text-indigo-600 dark:text-[#938BF1] uppercase tracking-widest">{study.tag}</span>
               </div>
+              
+              <h3 className="text-2xl font-bold !text-slate-900 dark:!text-white mb-1 font-serif">
+                {study.title}
+              </h3>
+              <p className="text-[10px] font-black text-slate-400 mb-6 uppercase tracking-widest">{study.client}</p>
+              
+              <p className="text-[15px] !text-slate-600 dark:!text-gray-400 mb-8 leading-relaxed line-clamp-3">
+                {study.description}
+              </p>
+
+              <div className="space-y-3 mb-10 flex-grow">
+                {study.metrics.map((metric, midx) => (
+                  <div key={midx} className="flex justify-between items-center py-2 border-b border-slate-200/60 dark:border-white/5 last:border-0">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-tight">{metric.label}</span>
+                    <span className="text-[14px] font-black !text-slate-900 dark:text-indigo-300 flex items-center gap-1">
+                      {metric.value} <CheckCircle2 size={12} className="text-green-500" />
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <Link 
+                href={`/case-studies/${study.slug}`}
+                className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-500/10 active:scale-95"
+              >
+                Access Full Report <ArrowRight size={16} />
+              </Link>
             </div>
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        .case-study-container {
-          perspective: 1500px;
-        }
-        
-        .mobile-card {
-          transform: rotateX(5deg) rotateY(-15deg);
-          transform-style: preserve-3d;
-        }
-        
-        .case-study-container:hover .mobile-card {
-          transform: rotateX(0deg) rotateY(0deg) scale(1.05);
-        }
-
-        @media (max-width: 768px) {
-          .mobile-card {
-            transform: none !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

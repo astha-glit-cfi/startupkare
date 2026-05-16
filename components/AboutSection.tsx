@@ -1,118 +1,136 @@
 'use client';
-
-import { Shield, Target, Award, ArrowUpRight } from 'lucide-react';
+import { Shield, Target, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (cardRef.current) {
-            observer.unobserve(cardRef.current);
-          }
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="about" className="py-24 bg-[#060B1A] relative scroll-mt-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+    <section 
+      id="about" 
+      ref={sectionRef}
+      className="relative py-24 !bg-white dark:!bg-[#060B1A] overflow-hidden transition-colors duration-500 scroll-mt-32"
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
-          {/* Left Content */}
-          <div>
-            <div className="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.3em] mb-6">Who We Are</div>
+          {/* --- LEFT CONTENT: Mission & Values --- */}
+          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+            <div className="inline-flex px-3 py-1 bg-indigo-50 dark:bg-white/5 border border-indigo-100 dark:border-white/10 rounded-full text-[10px] font-bold text-indigo-600 dark:text-[#938BF1] uppercase tracking-[0.3em] mb-8">
+              Leadership & Trust
+            </div>
 
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-8 tracking-tight leading-[1.15]" style={{ fontFamily: 'var(--font-heading)' }}>
-              Architecting the <br />
-              Future of <span className="text-indigo-400">Indian Industry</span>
+            <h2 className="text-4xl md:text-6xl font-serif font-bold text-slate-950 dark:text-white mb-8 leading-tight">
+              Built by Founders, <br />
+              For <span className="italic text-[#B48A32] dark:text-[#E4C37B]">Founders.</span>
             </h2>
 
-            <p className="text-lg text-gray-400 mb-10 leading-relaxed font-light">
-              Startup Kare is more than a platform; it's a mission-driven ecosystem architected to bridge the gap between visionary entrepreneurs and industrial excellence. We provide the structural integrity required to scale startups into national assets.
+            <p className="text-lg text-slate-600 dark:text-gray-400 mb-10 leading-relaxed font-normal">
+              Startup Kare is more than a consultancy; it's a mission-driven ecosystem built to provide the structural integrity required to scale startups into national assets. We bridge the gap between vision and execution.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {/* Core Pillars */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
               <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-indigo-400 shrink-0">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/5 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
                   <Shield size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm mb-1 uppercase tracking-wider" style={{ fontFamily: 'var(--font-heading)' }}>Integrity</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed">Verified compliance and institutional trust.</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1 uppercase tracking-wider">Absolute Integrity</h4>
+                  <p className="text-xs text-slate-500 dark:text-gray-500 leading-relaxed">Verified compliance and institutional trust in every step.</p>
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-white/5 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
                   <Target size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm mb-1 uppercase tracking-wider" style={{ fontFamily: 'var(--font-heading)' }}>Precision</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed">Data-driven metrics for absolute clarity.</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-1 uppercase tracking-wider">Precision Scaling</h4>
+                  <p className="text-xs text-slate-500 dark:text-gray-500 leading-relaxed">Data-driven strategies for fundraising and market entry.</p>
                 </div>
               </div>
+            </div>
+
+            <div className="flex flex-wrap gap-4 items-center pt-6 border-t border-slate-100 dark:border-white/5">
+               <div className="flex -space-x-3">
+                  {[1,2,3,4].map(i => (
+                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white dark:border-[#060B1A] bg-slate-200 overflow-hidden">
+                       <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="client" />
+                    </div>
+                  ))}
+               </div>
+               <p className="text-sm font-medium text-slate-500 dark:text-gray-400">
+                 Trusted by <span className="text-slate-900 dark:text-white font-bold">500+ Founders</span> across India
+               </p>
             </div>
           </div>
 
-          {/* Right Stats Card */}
-          <div 
-            ref={cardRef} 
-            className={`relative transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[40px]'}`}
-          >
-            <div className="p-10 md:p-12 relative z-10 bg-[#0B1D3A] border border-white/5 rounded-[2rem] shadow-2xl shadow-indigo-500/5 backdrop-blur-xl">
-              <div className="space-y-8">
-                <div className="flex items-center justify-between">
+          {/* --- RIGHT SIDE: Founder Profile Card --- */}
+          <div className={`relative transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+            <div className="relative z-10 bg-slate-50 dark:bg-[#0B0F1A] border border-slate-200 dark:border-white/5 rounded-[48px] p-2 overflow-hidden shadow-2xl">
+              
+              {/* Photo Area */}
+              <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden group">
+                <img 
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" 
+                  alt="Founder" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                
+                {/* Stats Overlay on Image */}
+                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl flex justify-between items-center text-white">
                   <div>
-                    <p className={`text-xs font-bold text-gray-500 uppercase tracking-widest mb-1 transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] delay-[100ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
-                      Impact Radius
-                    </p>
-                    <p className={`text-3xl font-extrabold text-white tracking-tight transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] delay-[200ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`} style={{ fontFamily: 'var(--font-heading)' }}>
-                      Pan-India
-                    </p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest opacity-70">Facilitated Growth</p>
+                    <p className="text-2xl font-bold font-serif">₹500Cr+</p>
                   </div>
-                  <div className={`w-16 h-16 rounded-full bg-white/5 flex items-center justify-center border border-white/10 transition-all duration-[600ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] delay-[300ms] ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-[0.8]'}`}>
-                    <Award className="text-indigo-400" size={32} />
+                  <div className="w-px h-10 bg-white/20"></div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-widest opacity-70">Experience</p>
+                    <p className="text-2xl font-bold font-serif">12+ Yrs</p>
                   </div>
                 </div>
+              </div>
 
-                <div className="w-full h-px bg-white/5"></div>
-
-                <div className={`grid grid-cols-2 gap-8 transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] delay-[400ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
-                  <div>
-                    <p className="text-4xl font-extrabold text-white mb-1 font-serif italic" style={{ fontFamily: 'var(--font-heading)' }}>5K+</p>
-                    <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Founders Empowered</p>
-                  </div>
-                  <div>
-                    <p className="text-4xl font-extrabold text-indigo-400 mb-1 font-serif italic" style={{ fontFamily: 'var(--font-heading)' }}>₹500Cr</p>
-                    <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Facilitated Growth</p>
-                  </div>
+              {/* Founder Info */}
+              <div className="p-8 md:p-10 flex items-center justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Founder Name</h3>
+                  <p className="text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-widest">Managing Partner & CEO</p>
                 </div>
-
-                <button className={`w-full p-5 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between group cursor-pointer hover:bg-indigo-600 transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] delay-[500ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
-                  <span className="font-bold text-white text-[10px] uppercase tracking-widest">Our Strategic Vision</span>
-                  <ArrowUpRight className="text-indigo-400 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" size={18} />
-                </button>
+        {/* Line 131-135 ke paas isse replace karein */}
+<a 
+  href="https://linkedin.com/in/your-profile" 
+  target="_blank"
+  className="w-12 h-12 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-blue-600 dark:text-white hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+>
+  {/* LinkedIn SVG Icon */}
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect width="4" height="12" x="2" y="9"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+  </svg>
+</a>
               </div>
             </div>
-            
-            {/* Decorative Background Elements */}
-            <div className={`absolute -top-6 -right-6 w-full h-full border-2 border-dashed border-white/5 rounded-[2rem] z-0 transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] delay-[100ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}></div>
-            <div className={`absolute -bottom-6 -left-6 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl z-0 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-[300ms] ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}></div>
+
+            {/* Decorative Grid Behind */}
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-500/10 blur-3xl rounded-full"></div>
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/10 blur-3xl rounded-full"></div>
           </div>
 
         </div>

@@ -106,17 +106,14 @@ body {
 }
 
 /* ─── TYPOGRAPHY ─── */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: var(--color-text-main);
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-text-main);
+  }
 
 /* ─── UTILITY CLASSES ─── */
 .text-gradient {
@@ -297,3 +294,28 @@ h6 {
   font-variant-numeric: tabular-nums;
   color: #FFFFFF;
 }
+
+/* h1.hero-heading {
+  color: rgb(2 6 23) !important;
+}
+
+.dark h1.hero-heading {
+  color: white !important;
+} */
+
+
+:root {
+  --color-text-main: rgb(2 6 23); /* Default (Light) color */
+}
+
+/* Jab html/body par .dark class ho tab variable ki value badal do */
+.dark {
+  --color-text-main: white;
+}
+
+/* Ab h1 ko extra CSS ki zaroorat nahi, wo variable se apne aap color change karega */
+h1.hero-heading {
+  color: var(--color-text-main);
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

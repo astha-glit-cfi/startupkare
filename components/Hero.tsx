@@ -24,9 +24,9 @@ export  default  function Hero() {
         </div>
 
         <div className="max-w-5xl">
-          <h1 className="!text-slate-950 dark:!text-white text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.1] mb-8 tracking-tight font-serif transition-colors duration-500">
-            India's Most <span className="italic !text-[#B48A32] dark:!text-[#E4C37B] font-serif">Trusted</span><br />
-            Startup Partner
+          <h1 className="!text-slate-950 dark:!text-white text-3xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.1] mb-8 tracking-tight font-serif transition-colors duration-500">
+            We build the <span className="italic !text-[#B48A32] dark:!text-[#E4C37B] font-serif">Foundations</span><br />
+            of future giants
           </h1>
 
           <p className="!text-slate-600 dark:!text-slate-400 text-lg md:text-xl font-normal mb-10 max-w-3xl leading-relaxed transition-colors duration-500">

@@ -256,4 +256,4 @@ export function LeadCaptureForm() {
       `}</style>
     </section>
   );
-}
+}     

@@ -57,7 +57,7 @@ export function NewsSection() {
             <Link 
               key={`${item.id}-${index}`} 
               href={`/news/${item.id}`} 
-              className="group bg-white dark:bg-[#0B0F1A] rounded-2xl overflow-hidden border !border-slate-100 dark:!border-white/5 shadow-sm hover:shadow-xl transition-all flex flex-col h-full min-h-[400px]"
+              className="group bg-white dark:bg-[#0B0F1A] rounded-2xl overflow-hidden border !border-slate-100 dark:!border-white/5 shadow-sm hover:shadow-xl transition-all flex flex-col h-full min-h-[340px]"
             >
               {/* 1. Image Area */}
               <div className="h-48 overflow-hidden relative bg-slate-100 dark:bg-white/5">
@@ -72,10 +72,10 @@ export function NewsSection() {
               {/* 2. Content Area */}
               <div className="p-6 flex flex-col flex-grow text-left">
                 {/* Date on top */}
-                <p className="text-[11px] font-bold text-slate-400 mb-3 uppercase">{item.time}</p>
+                <p className="text-[11px] font-bold text-slate-400 mb-1 uppercase">{item.time}</p>
                 
                 {/* Heading - FORCED VISIBILITY FIX */}
-                <h3 className="text-[15px] font-bold !text-slate-900 dark:!text-slate-100 mb-4 line-clamp-3 leading-snug group-hover:text-[#B48A32] transition-colors">
+                <h3 className="text-[15px] font-bold !text-slate-900 dark:!text-slate-100 mb-2 line-clamp-3 leading-snug group-hover:text-[#B48A32] transition-colors">
                   {item.title}
                 </h3>
                 
