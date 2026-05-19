@@ -40,9 +40,24 @@ export default function BlogPost() {
         if (data.length > 0) {
           const blog = data[0];
 
+          const stripShortcodes = (html: string) => {
+            if (!html) return '';
+            return html.replace(/\[\/?[\w-]+[^\]]*\]/g, '');
+          };
+
+          const decodeHtml = (html: string) => {
+            if (!html) return '';
+            const txt = document.createElement('textarea');
+            txt.innerHTML = html;
+            return txt.value;
+          };
+
+          const rawContent = stripShortcodes(blog.content.rendered || '');
+          const decodedContent = decodeHtml(rawContent);
+
           setPost({
-            title: blog.title.rendered,
-            content: blog.content.rendered,
+            title: decodeHtml(blog.title.rendered || ''),
+            content: decodedContent,
             image:
               blog._embedded?.['wp:featuredmedia']?.[0]?.source_url ||
               'https://images.unsplash.com/photo-1551288049-bbda38a5f452',
@@ -155,6 +170,10 @@ export default function BlogPost() {
             src={post?.image}
             alt={post?.title}
             className="w-full h-full object-cover"
+            loading="lazy"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = 'https://images.unsplash.com/photo-1551288049-bbda38a5f452';
+            }}
           />
 
           <div className="absolute inset-0 bg-black/10"></div>

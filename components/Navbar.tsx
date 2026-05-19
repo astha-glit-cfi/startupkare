@@ -116,10 +116,15 @@ export function Navbar() {
         {isOpen && (
           <div className="lg:hidden border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#060B1A] animate-in slide-in-from-top-5 duration-300">
             <div className="px-6 py-8 flex flex-col gap-2">
-              {['Services', 'Packages', 'Schemes', 'News', 'About'].map((item) => (
+              {['Services', 'Packages', 'Schemes', 'News', 'Blog', 'About'].map((item) => (
                 <Link 
                   key={item} 
-                  href={item === 'About' ? '/about-us' : item === 'Services' ? '/contact-us' : `/#${item.toLowerCase()}`}
+                  href={
+                    item === 'About' ? '/about-us' :
+                    item === 'Services' ? '/contact-us' :
+                    item === 'Blog' ? '/blog' :
+                    `/#${item.toLowerCase()}`
+                  }
                   onClick={() => setIsOpen(false)}
                   className="px-4 py-4 rounded-xl text-lg font-bold text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-white/5 transition-all border-b border-slate-50 dark:border-white/5 last:border-0"
                 >

@@ -3,11 +3,11 @@ import { Cloud, ShoppingBag, Landmark, HeartPulse, Factory, ArrowRight } from 'l
 import Link from 'next/link';
 
 const industries = [
-  { name: 'SaaS', icon: <Cloud />, desc: 'Subscription models, global compliance & recurring billing setup.' },
-  { name: 'D2C', icon: <ShoppingBag />, desc: 'Brand registration, inventory funding & e-commerce legalities.' },
-  { name: 'Fintech', icon: <Landmark />, desc: 'RBI licenses, payment gateway compliance & data security.' },
-  { name: 'Healthcare', icon: <HeartPulse />, desc: 'Medical certifications, drug licenses & health-tech scaling.' },
-  { name: 'MSMEs', icon: <Factory />, desc: 'ZED certifications, Mudra loans & cluster development schemes.' },
+  { name: 'SaaS', icon: <Cloud />, desc: 'Optimizing recurring revenue, global tax compliance, and scalable architecture' },
+  { name: 'D2C', icon: <ShoppingBag />, desc: 'Strengthening brand identity, inventory financing, and e-commerce regulatory support' },
+  { name: 'Fintech', icon: <Landmark />, desc: 'Navigating RBI licensing, secure payment gateways, and rigorous data privacy' },
+  { name: 'Healthcare', icon: <HeartPulse />, desc: 'Expert guidance on drug licensing, medical certifications, and health-tech innovation.' },
+  { name: 'MSMEs', icon: <Factory />, desc: 'Unlocking government grants, ZED quality standards, and strategic growth capital.E' },
 ];
 
 export function IndustryExpertise() {

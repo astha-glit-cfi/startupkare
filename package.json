@@ -2,12 +2,12 @@
   "name": "startup-kare",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev -H 0.0.0.0 -p 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
+ "scripts": {
+  "dev": "next dev --webpack",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint"
+},
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@supabase/supabase-js": "^2.105.1",

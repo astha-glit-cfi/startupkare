@@ -55,7 +55,7 @@ export function KnowledgeHub() {
           
          <Link href="/resources" className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-[#B48A32] flex items-center gap-2 transition-all group">
   Access All Guides <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-</Link>
+</Link> 
         </div>
 
         {/* Resources Grid */}
@@ -89,7 +89,7 @@ export function KnowledgeHub() {
               {/* Footer CTA */}
               <div className="pt-8 border-t border-slate-200 dark:border-white/10 flex items-center justify-between relative z-10">
                 <div className="flex items-center gap-2 text-[10px] font-black text-slate-400 dark:text-gray-500 uppercase tracking-[0.2em] group-hover:text-indigo-600 transition-colors">
-                  Open Playbook <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                  Open Guide <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                 </div>
                 <div className="w-8 h-8 rounded-full bg-white dark:bg-white/5 flex items-center justify-center text-slate-400 dark:text-gray-600 group-hover:text-[#B48A32] transition-all">
                    <Download size={16} />

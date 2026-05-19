@@ -15,12 +15,27 @@ export default function ArticlePage() {
   useEffect(() => {
     async function loadData() {
       try {
-        const res = await fetch('/api/news');
+        const res = await fetch(`/api/news?t=${Date.now()}`, { cache: 'no-store' });
+
+        if (!res.ok) {
+          const txt = await res.text();
+          throw new Error(`API error ${res.status}: ${txt}`);
+        }
+
         const data = await res.json();
-        const found = data.find((item: any) => item.id === params.id);
-        setArticle(found);
+
+        if (!Array.isArray(data)) {
+          throw new Error('Invalid response from /api/news — expected array');
+        }
+
+        const found = data.find((item: any) => String(item.id) === String(params.id));
+        if (!found) {
+          console.warn('Article not found for id', params.id);
+        }
+
+        setArticle(found || null);
       } catch (err) {
-        console.error("Load error");
+        console.error('Load error fetching article', err);
       } finally {
         setLoading(false);
       }

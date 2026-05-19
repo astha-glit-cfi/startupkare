@@ -29,11 +29,23 @@ export default function BlogPage() {
 
         const data = await res.json();
 
+        const decodeHtml = (html: string) => {
+          if (!html) return '';
+          const txt = document.createElement('textarea');
+          txt.innerHTML = html;
+          return txt.value;
+        };
+
+        const stripShortcodes = (html: string) => {
+          if (!html) return '';
+          return html.replace(/\[\/?[\w-]+[^\]]*\]/g, '');
+        };
+
         const formattedBlogs = data.map((post: any) => ({
           id: post.id,
           slug: post.slug,
-          title: post.title.rendered,
-          excerpt: post.excerpt.rendered.replace(/<[^>]+>/g, ''),
+          title: decodeHtml(post.title.rendered),
+          excerpt: decodeHtml(stripShortcodes(post.excerpt.rendered.replace(/<[^>]+>/g, ''))),
           date: new Date(post.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -110,6 +122,10 @@ export default function BlogPage() {
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = 'https://images.unsplash.com/photo-1551288049-bbda38a5f452?auto=format&fit=crop&q=80';
+                    }}
                   />
 
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500"></div>

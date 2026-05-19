@@ -1,5 +1,5 @@
 'use client';
-import { Shield, Target, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Shield, Target , ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 export function AboutSection() {

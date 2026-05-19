@@ -13,10 +13,21 @@ export function NewsSection() {
   const fetchNews = useCallback(async () => {
     try {
       const res = await fetch(`/api/news?t=${Date.now()}`, { cache: 'no-store' });
+
+      if (!res.ok) {
+        const txt = await res.text();
+        throw new Error(`API error ${res.status}: ${txt}`);
+      }
+
       const data = await res.json();
-      if (Array.isArray(data)) setNews(data);
+
+      if (!Array.isArray(data)) {
+        throw new Error('Invalid response format from /api/news');
+      }
+
+      setNews(data);
     } catch (e) {
-      console.error("Fetch failed");
+      console.error('Fetch failed', e);
     } finally {
       setLoading(false);
     }

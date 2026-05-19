@@ -10,6 +10,7 @@ const parser = new Parser({
 });
 
 export async function GET() {
+  console.log('API /api/news GET invoked');
   try {
     const res = await fetch(`https://yourstory.com/feed?t=${Date.now()}`, {
       headers: {
